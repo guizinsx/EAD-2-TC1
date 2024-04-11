@@ -57,4 +57,13 @@ public class GerenciarArray {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < this.array.length && this.array[i] != 0; i++) {
+            sb.append(this.array[i]).append(" ");
+        }
+        return sb.toString().trim();
+    }
 }
