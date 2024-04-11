@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class GerenciarArray {
     private int[] array;
 
-    // onstrutor p teste
+    // construtor p teste
     public GerenciarArray(int[] initial) {
         if (initial.length != 5) {
             throw new IllegalArgumentException("precisa ser 5 numeros iniciais");
@@ -19,7 +19,6 @@ public class GerenciarArray {
     public GerenciarArray() {
         this.array = new int[10];
         int[] userInput = obterEntradaDoUsuario();
-        this.array = new int[10];
         System.arraycopy(userInput, 0, this.array, 0, userInput.length);
     }
 
