@@ -53,4 +53,29 @@ public class GerenciarArrayTest {
         assertFalse(ga.adicionarOuRemover(1));
     }
 
+    @Test
+    public void testAdicaoAposCheioNaoAlteraArray() {
+        GerenciarArray ga = new GerenciarArray(new int[]{1, 2, 3, 4, 5});
+        assertTrue(ga.adicionarOuRemover(6));
+        assertTrue(ga.adicionarOuRemover(7));
+        assertTrue(ga.adicionarOuRemover(8));
+        assertTrue(ga.adicionarOuRemover(9));
+        assertTrue(ga.adicionarOuRemover(10));
+        assertTrue(ga.isFull());
+        assertFalse(ga.adicionarOuRemover(11));
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, ga.getArray());
+    }
+
+    @Test
+    public void testRemocaoAposVazioNaoAlteraArray() {
+        GerenciarArray ga = new GerenciarArray(new int[]{1, 2, 3, 4, 5});
+        assertTrue(ga.adicionarOuRemover(1));
+        assertTrue(ga.adicionarOuRemover(2));
+        assertTrue(ga.adicionarOuRemover(3));
+        assertTrue(ga.adicionarOuRemover(4));
+        assertTrue(ga.adicionarOuRemover(5));
+        assertTrue(ga.isEmpty());
+        assertFalse(ga.adicionarOuRemover(1));
+        assertArrayEquals(new int[0], ga.getArray());
+    }
 }
