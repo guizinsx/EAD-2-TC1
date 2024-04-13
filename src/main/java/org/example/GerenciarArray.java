@@ -1,9 +1,11 @@
 package org.example;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class GerenciarArray {
     private int[] array;
+    private int size;
 
     // construtor p teste
     public GerenciarArray(int[] initial) {
@@ -12,6 +14,7 @@ public class GerenciarArray {
         }
         this.array = new int[10];
         System.arraycopy(initial, 0, this.array, 0, initial.length);
+        this.size = initial.length;
         validarUnico(initial);
     }
 
@@ -20,6 +23,7 @@ public class GerenciarArray {
         this.array = new int[10];
         int[] userInput = obterEntradaDoUsuario();
         System.arraycopy(userInput, 0, this.array, 0, userInput.length);
+        this.size = userInput.length;
     }
 
     private int[] obterEntradaDoUsuario() {
@@ -65,5 +69,26 @@ public class GerenciarArray {
             sb.append(this.array[i]).append(" ");
         }
         return sb.toString().trim();
+    }
+
+    public void adicionarOuRemover(int numero) {
+        boolean found = false;
+        for (int i = 0; i < size; i++) {
+            if (array[i] == numero) {
+                found = true;
+                for (int j = i; j < size - 1; j++) {
+                    array[j] = array[j + 1];
+                }
+                size--;
+                break;
+            }
+        }
+        if (!found && size < array.length) {
+            array[size++] = numero;
+        }
+    }
+
+    public int[] getArray() {
+        return Arrays.copyOf(array, size);
     }
 }
