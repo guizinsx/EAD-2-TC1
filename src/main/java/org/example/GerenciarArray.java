@@ -30,6 +30,10 @@ public class GerenciarArray {
         return size == 10;
     }
 
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
     private int[] obterEntradaDoUsuario() {
         Scanner scanner = new Scanner(System.in);
         int[] userInput = new int[5];
@@ -92,6 +96,9 @@ public class GerenciarArray {
         }
         if (!found && size < array.length) {
             array[size++] = numero;
+        }
+        if (isEmpty()) {
+            throw new IllegalStateException("array vazia");
         }
     }
 
