@@ -26,6 +26,10 @@ public class GerenciarArray {
         this.size = userInput.length;
     }
 
+    public boolean isFull() {
+        return size == 10;
+    }
+
     private int[] obterEntradaDoUsuario() {
         Scanner scanner = new Scanner(System.in);
         int[] userInput = new int[5];
@@ -72,6 +76,9 @@ public class GerenciarArray {
     }
 
     public void adicionarOuRemover(int numero) {
+        if (isFull()) {
+            throw new IllegalStateException("array esta cheia, nao é possivel adicionar mais numeros");
+        }
         boolean found = false;
         for (int i = 0; i < size; i++) {
             if (array[i] == numero) {
