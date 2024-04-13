@@ -29,4 +29,16 @@ public class GerenciarArrayTest {
         assertArrayEquals(new int[]{10, 20, 30, 40, 50}, ga.getArray());
     }
 
+    @Test
+    public void testArrayFicaCheioEProgramaTermina() {
+        GerenciarArray ga = new GerenciarArray(new int[]{1, 2, 3, 4, 5});
+        ga.adicionarOuRemover(6);
+        ga.adicionarOuRemover(7);
+        ga.adicionarOuRemover(8);
+        ga.adicionarOuRemover(9);
+        ga.adicionarOuRemover(10);
+        assertTrue(ga.isFull());
+        assertThrows(IllegalStateException.class, () -> ga.adicionarOuRemover(11));
+    }
+
 }
