@@ -41,4 +41,16 @@ public class GerenciarArrayTest {
         assertThrows(IllegalStateException.class, () -> ga.adicionarOuRemover(11));
     }
 
+    @Test
+    public void testArrayFicaVazioEProgramaTermina() {
+        GerenciarArray ga = new GerenciarArray(new int[]{1, 2, 3, 4, 5});
+        ga.adicionarOuRemover(1);
+        ga.adicionarOuRemover(2);
+        ga.adicionarOuRemover(3);
+        ga.adicionarOuRemover(4);
+        ga.adicionarOuRemover(5);
+        assertTrue(ga.isEmpty());
+        assertThrows(IllegalStateException.class, () -> ga.adicionarOuRemover(1));
+    }
+
 }
