@@ -19,4 +19,14 @@ public class GerenciarArrayTest {
 
         assertTrue(thrown.getMessage().contains("nao podem ser repetidos"));
     }
+
+
+    @Test
+    public void testAdicaoEremocaoDeElemento() {
+        GerenciarArray ga = new GerenciarArray(new int[]{10, 20, 30, 40, 50});
+        ga.adicionarOuRemover(60);
+        ga.adicionarOuRemover(60);
+        assertArrayEquals(new int[]{10, 20, 30, 40, 50}, ga.getArray());
+    }
+
 }
