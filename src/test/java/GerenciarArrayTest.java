@@ -38,7 +38,7 @@ public class GerenciarArrayTest {
         ga.adicionarOuRemover(9);
         ga.adicionarOuRemover(10);
         assertTrue(ga.isFull());
-        assertThrows(IllegalStateException.class, () -> ga.adicionarOuRemover(11));
+        assertFalse(ga.adicionarOuRemover(11));
     }
 
     @Test
@@ -50,6 +50,7 @@ public class GerenciarArrayTest {
         ga.adicionarOuRemover(4);
         ga.adicionarOuRemover(5);
         assertTrue(ga.isEmpty());
+        assertFalse(ga.adicionarOuRemover(1));
     }
 
 }
