@@ -34,6 +34,15 @@ public class GerenciarArray {
         return size == 0;
     }
 
+    private int findIndex(int numero) {
+        for (int i = 0; i < size; i++) {
+            if (array[i] == numero) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     private int[] obterEntradaDoUsuario() {
         Scanner scanner = new Scanner(System.in);
         int[] userInput = new int[5];
@@ -80,22 +89,18 @@ public class GerenciarArray {
     }
 
     public void adicionarOuRemover(int numero) {
-        if (isFull()) {
-            throw new IllegalStateException("array esta cheia, nao é possivel adicionar mais numeros");
-        }
-        boolean found = false;
-        for (int i = 0; i < size; i++) {
-            if (array[i] == numero) {
-                found = true;
-                for (int j = i; j < size - 1; j++) {
+        if (!isFull() && findIndex(numero) == -1) {
+            array[size++] = numero;
+        } else {
+            int index = findIndex(numero);
+            if (index != -1) {
+                for (int j = index; j < size - 1; j++) {
                     array[j] = array[j + 1];
                 }
-                size--;
-                break;
+                array[--size] = 0;
+            } else {
+                throw new IllegalStateException("array esta cheia, nao é possivel adicionar mais numeros");
             }
-        }
-        if (!found && size < array.length) {
-            array[size++] = numero;
         }
         if (isEmpty()) {
             throw new IllegalStateException("array vazia");
