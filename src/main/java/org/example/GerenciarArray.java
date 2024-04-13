@@ -87,24 +87,37 @@ public class GerenciarArray {
         }
         return sb.toString().trim();
     }
-
-    public void adicionarOuRemover(int numero) {
-        if (!isFull() && findIndex(numero) == -1) {
-            array[size++] = numero;
-        } else {
-            int index = findIndex(numero);
-            if (index != -1) {
-                for (int j = index; j < size - 1; j++) {
-                    array[j] = array[j + 1];
-                }
-                array[--size] = 0;
-            } else {
-                throw new IllegalStateException("array esta cheia, nao é possivel adicionar mais numeros");
+    public void executarPrograma() {
+        Scanner scanner = new Scanner(System.in);
+        while (!isFull() && !isEmpty()) {
+            System.out.println("digite um inteiro para adicionar ou remover:");
+            int num = scanner.nextInt();
+            if (!adicionarOuRemover(num)) {
+                System.out.println("ops algo deu errado, o array pode estar cheio ou vazio");
+                break;
             }
         }
-        if (isEmpty()) {
-            throw new IllegalStateException("array vazia");
+        scanner.close();
+        System.out.println("programa terminou, o array está " + (isFull() ? "cheio" : "vazio"));
+    }
+
+    public boolean adicionarOuRemover(int numero) {
+        if (isFull() || isEmpty()) {
+            return false;
         }
+
+        int index = findIndex(numero);
+        if (index != -1) {
+            for (int j = index; j < size - 1; j++) {
+                array[j] = array[j + 1];
+            }
+            array[--size] = 0;
+        } else if (size < array.length) {
+            array[size++] = numero;
+        } else {
+            return false;
+        }
+        return true;
     }
 
     public int[] getArray() {
