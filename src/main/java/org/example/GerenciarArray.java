@@ -7,7 +7,7 @@ public class GerenciarArray {
     private int[] array;
     private int size;
 
-    // construtor p teste
+
     public GerenciarArray(int[] initial) {
         if (initial.length != 5) {
             throw new IllegalArgumentException("precisa ser 5 numeros iniciais");
@@ -20,13 +20,6 @@ public class GerenciarArray {
     }
 
 
-    public GerenciarArray() {
-        this.array = new int[10];
-        int[] userInput = obterEntradaDoUsuario();
-        System.arraycopy(userInput, 0, this.array, 0, userInput.length);
-        this.size = userInput.length;
-        System.out.println("Array inicial: " + this);
-    }
 
     public boolean isFull() {
         return size == 10;
