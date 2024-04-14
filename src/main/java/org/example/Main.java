@@ -1,17 +1,41 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner scanner = new Scanner(System.in);
+        int[] NumerosIniciais = new int[5];
+        System.out.println("Insira 5 numeros inteiros diferentes: ");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        for (int i = 0; i < NumerosIniciais.length; i++) {
+            while (true) {
+                System.out.printf("Entre com o numero %d: ", i + 1);
+                if (scanner.hasNextInt()) {
+                    int num = scanner.nextInt();
+                    boolean isDuplicate = false;
+                    for (int j = 0; j < i; j++) {
+                        if (NumerosIniciais[j] == num) {
+                            isDuplicate = true;
+                            System.out.println("Este numero ja foi inserido, escolha outro");
+                            break;
+                        }
+                    }
+                    if (!isDuplicate) {
+                        NumerosIniciais[i] = num;
+                        break;
+                    }
+                } else {
+                    System.out.println("Valor invalido, precisa ser um inteiro");
+                    scanner.next();
+                }
+            }
         }
+
+        GerenciarArray ga = new GerenciarArray(NumerosIniciais);
+
+        ga.executarPrograma();
+
+        scanner.close();
     }
 }
