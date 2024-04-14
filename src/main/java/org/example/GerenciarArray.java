@@ -38,22 +38,7 @@ public class GerenciarArray {
         return -1;
     }
 
-    private int[] obterEntradaDoUsuario() {
-        Scanner scanner = new Scanner(System.in);
-        int[] userInput = new int[5];
-        int count = 0;
 
-        System.out.println("digite cinco numeros inteiros nao repetidos: ");
-        while (count < 5) {
-            int num = scanner.nextInt();
-            if (isDuplicado(userInput, num, count)) {
-                System.out.println("Numero repetido, digite outro");
-            } else {
-                userInput[count++] = num;
-            }
-        }
-        return userInput;
-    }
 
     private void validarUnico(int[] array) {
         for (int i = 0; i < array.length; i++) {
