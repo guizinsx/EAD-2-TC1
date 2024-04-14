@@ -16,6 +16,7 @@ public class GerenciarArray {
         System.arraycopy(initial, 0, this.array, 0, initial.length);
         this.size = initial.length;
         validarUnico(initial);
+        System.out.println("Array inicial: " + this);
     }
 
 
@@ -24,6 +25,7 @@ public class GerenciarArray {
         int[] userInput = obterEntradaDoUsuario();
         System.arraycopy(userInput, 0, this.array, 0, userInput.length);
         this.size = userInput.length;
+        System.out.println("Array inicial: " + this);
     }
 
     public boolean isFull() {
@@ -90,19 +92,21 @@ public class GerenciarArray {
     public void executarPrograma() {
         Scanner scanner = new Scanner(System.in);
         while (!isFull() && !isEmpty()) {
-            System.out.println("digite um inteiro para adicionar ou remover:");
+            System.out.println("Digite um inteiro para adicionar ou remover:");
             int num = scanner.nextInt();
             if (!adicionarOuRemover(num)) {
-                System.out.println("ops algo deu errado, o array pode estar cheio ou vazio");
+                System.out.println("Ops! Algo deu errado, o array pode estar cheio ou vazio");
                 break;
             }
+            System.out.println("Estado atual do array: " + this);
         }
         scanner.close();
-        System.out.println("programa terminou, o array está " + (isFull() ? "cheio" : "vazio"));
+        System.out.println("O programa terminou, o array está " + (isFull() ? "cheio" : "vazio"));
     }
 
     public boolean adicionarOuRemover(int numero) {
         if (isFull() || isEmpty()) {
+            System.out.println(this);
             return false;
         }
 
@@ -117,6 +121,7 @@ public class GerenciarArray {
         } else {
             return false;
         }
+        System.out.println(this);
         return true;
     }
 
